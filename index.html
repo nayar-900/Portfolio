@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ darkMode: false }" :class="{ 'dark': darkMode }">
+  <body :class="{ 'overflow-hidden': showSidebar }">
+<head>
+  <style>
+  [x-cloak] { display: none !important; }
+</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rayan Badar | Portfolio Resume</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js -->
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<!-- Font Awesome (correct link) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    html { scroll-behavior: smooth; }
+  </style>
+  <link rel="icon" type="image/png" href="topic.png">
+
+</head>
+
+<body class="bg-gray-900 text-gray-200">
+  <div id="preloader" class="fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
+  <div class="loader border-t-4 border-yellow-500 border-solid rounded-full w-12 h-12 animate-spin"></div>
+</div>
+<!-- Header -->
+<header x-data="{ open: false, showSidebar: false }" class="bg-gray-900 p-6 sticky top-0 z-50 shadow-lg">
+  <div class="flex justify-between items-center max-w-6xl mx-auto">
+
+    <!-- Logo + Name (Clickable) -->
+    <div class="flex items-center space-x-4 cursor-pointer group" @click="showSidebar = true">
+      <img src="rayan.jpeg" alt="Rayan Badar" class="w-10 h-10 rounded-full border-2 border-blue-900 group-hover:border-yellow-300">
+      <h1 class="text-2xl font-bold text-white group-hover:text-yellow-300 transition">Rayan Badar</h1>
+    </div>
+
+    <!-- Hamburger (Mobile) -->
+    <button @click="open = !open" class="text-gray-400 md:hidden focus:outline-none text-2xl">
+      <i :class="open ? 'fas fa-times' : 'fas fa-bars'"></i>
+    </button>
+
+<!-- Light/Dark Toggle Button (Message appears below the icon) -->
+<div class="relative ml-4" x-data="{ darkMode: false, showMessage: false }">
+  <button 
+    @click="showMessage = true; setTimeout(() => showMessage = false, 2500)" 
+    class="text-yellow-400 hover:text-white text-xl focus:outline-none"
+    title="Toggle Theme (Coming Soon)">
+    
+    <!-- Icon Switch -->
+    <i x-show="!darkMode" class="fas fa-moon"></i>
+    <i x-show="darkMode" class="fas fa-sun"></i>
+  </button>
+
+  <!-- Tooltip Message -->
+  <div 
+    x-show="showMessage"
+    x-transition
+    class="absolute left-1/2 -translate-x-1/2 mt-2 bg-blue-950 text-yellow-300 text-sm px-4 py-2 rounded shadow-lg z-50"
+  >
+    Feature coming soon
+  </div>
+</div>
+
+    <!-- Nav Links (Desktop) -->
+    <nav class="hidden md:flex space-x-6 text-sm text-white">
+      <a href="#skills" class="hover:text-yellow-300 scroll-mt-24">Skills</a>
+      <a href="#Academic" class="hover:text-yellow-300 scroll-mt-24">Academic Projects</a>
+      <a href="#experience" class="hover:text-yellow-300 scroll-mt-24">Experience</a>
+      <a href="#education" class="hover:text-yellow-300 scroll-mt-24">Education</a>
+      <a href="#Certificates" class="hover:text-yellow-300 scroll-mt-24">Certificates</a>
+      <a href="#Achievements" class="hover:text-yellow-300 scroll-mt-24">Achievements</a>
+      <a href="#Projects" class="hover:text-yellow-300 scroll-mt-24">Other Projects</a>
+    </nav>
+  </div>
+
+  <!-- Mobile Nav Links -->
+  <div x-show="open" x-cloak x-transition class="md:hidden mt-4 space-y-2 text-center text-sm text-white">
+    <a href="#skills" class="block hover:text-yellow-300 scroll-mt-24">Skills</a>
+    <a href="#Academic" class="block hover:text-yellow-300 scroll-mt-24">Academic Projects</a>
+    <a href="#experience" class="block hover:text-yellow-300 scroll-mt-24">Experience</a>
+    <a href="#education" class="block hover:text-yellow-300 scroll-mt-24">Education</a>
+    <a href="#Certificates" class="block hover:text-yellow-300 scroll-mt-24">Certificates</a>
+    <a href="#Achievements" class="block hover:text-yellow-300 scroll-mt-24">Achievements</a>
+    <a href="#Projects" class="block hover:text-yellow-300 scroll-mt-24">Other Projects</a>
+  </div>
+
+  <!-- Sidebar Overlay -->
+  <div x-show="showSidebar" x-cloak class="fixed inset-0 bg-black bg-opacity-40 z-50" @click="showSidebar = false" x-transition></div>
+
+<!-- Sidebar Panel -->
+<div x-show="showSidebar" x-transition x-cloak
+     class="fixed top-0 left-0 w-80 h-full bg-gradient-to-b from-blue-950 to-gray-900 text-white shadow-2xl z-50 p-6 overflow-y-auto rounded-r-xl">
+
+  <!-- Close Button -->
+  <button @click="showSidebar = false"
+          class="text-white hover:text-yellow-300 float-right text-3xl font-bold">&times;</button>
+
+  <!-- Heading -->
+  <h2 class="text-2xl font-extrabold mt-2 mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-white">
+    About Me
+  </h2>
+
+  <!-- Profile Image -->
+  <div class="flex justify-center mb-6">
+    <img src="rayan.jpeg"
+         alt="Rayan Profile"
+         class="w-28 h-28 rounded-full border-4 border-blue-800 hover:border-yellow-300 shadow-lg hover:scale-105 transform transition duration-300">
+  </div>
+
+  <!-- Divider -->
+  <div class="border-b border-gray-600 mb-4"></div>
+
+<!-- Bio Content -->
+<p class="text-sm leading-relaxed text-gray-300 text-justify space-y-2">
+  Currently pursuing a <span class="text-yellow-300 font-medium">Bachelor of Science in Computer Science</span> at 
+  <a href="https://www.namal.edu.pk/" target="_blank" class="hover:underline text-yellow-300">Namal University</a>, 
+  I’m building a solid foundation in SQL, database systems, algorithm analysis, web development, and app development during my 4th semester. 
+  In earlier semesters, I’ve acquired a broad range of technical and problem-solving skills.
+  <br><br>
+  Outside of academics, I enjoy writing short blogs on 
+  <a href="https://nayar900.home.blog/" target="_blank" class="text-yellow-300 hover:underline">Jetpack by WordPress</a>, 
+  where I share thoughts on digital trends, productivity, and creative workflows.
+  <br><br>
+  I’m also an <span class="text-yellow-300 font-medium">Off-Page SEO specialist</span> with a strong interest in guest posting, 
+  backlink strategies, content writing, and digital marketing.
+  <br><br>
+  I’m passionate about applying my skills to real-world projects and continuously evolving across both tech and content spaces.
+</p>
+
+</div>
+
+</header>
+
+<!-- Hero Section -->
+<section class="relative h-screen flex flex-col justify-center items-center text-center px-6">
+  <div id="particles-js" class="absolute inset-0"></div>
+
+  <!-- Clickable Profile Picture -->
+  <a href="rayan.jpeg" target="_blank" class="z-10 animate__animated animate__fadeIn">
+    <img src="rayan.jpeg" alt="Rayan Badar" class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-blue-950 hover:border-yellow-300 shadow-lg mb-6 transition-transform hover:scale-105" />
+</a>
+  <h2 class="text-5xl font-extrabold animate__animated animate__fadeInDown z-10">Hey, I'm Rayan Badar</h2>
+  <!-- Typing text placeholder -->
+<p class="mt-6 text-2xl font-light text-white animate__animated animate__fadeInUp">
+  <span id="typing"></span>
+  <span id="all-titles" class="hidden">Computer Scientist | Content Writer | SEO Specialist | Graphic Designer</span>
+</p>
+  <div class="mt-10 space-x-4 animate__animated animate__fadeInUp z-10">
+    <a href="#instant" class="px-6 py-3 bg-blue-950 hover:bg-yellow-500 text-white font-semibold hover:text-black rounded-full">Instant Chat</a>
+<a href="Rayan Resume.pdf" target="_blank"
+   class="mt-4 inline-block px-6 py-3 bg-blue-950 font-semibold hover:bg-yellow-500 text-white hover:text-black rounded-full transition whitespace-nowrap text-center">
+  Check Resume
+</a>
+
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="max-w-6xl mx-auto py-20 px-6 scroll-mt-24" x-data="{ skill: null }">
+  <h3 class="text-3xl font-bold mb-10 text-center text-white">Skills</h3>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+    <!-- Skill Card -->
+    <div @click="skill = {
+      title: 'C++ | HTML | CSS | SQL ',
+      description: 'Proficient in frontend design (HTML, CSS) and backend fundamentals using SQL ... Experienced with C++ programming and structured query development ...'
+    }"
+      class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer text-center p-6">
+      <h4 class="text-xl font-semibold mb-2">Programming Languages</h4>
+      <p class="text-sm">C++ | HTML | CSS | SQL</p>
+    </div>
+
+    <!-- Skill Card -->
+    <div @click="skill = {
+      title: 'OOP | DSA | AL | DB',
+      description: 'Solid foundation in Object-Oriented Programming in C++, Data Structures & Algorithms, DataBase and mid-level Assembly concepts ...'
+    }"
+      class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer text-center p-6">
+      <h4 class="text-xl font-semibold mb-2">Core CS Concepts</h4>
+      <p class="text-sm">OOP | DSA | AL | DB</p>
+    </div>
+
+    <!-- Skill Card -->
+    <div @click="skill = {
+      title: 'Graphic Design | Video Editing',
+      description: 'Skilled with tools like Canva and Capcut to create engaging graphics and edit videos for social and academic projects ...'
+    }"
+      class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer text-center p-6">
+      <h4 class="text-xl font-semibold mb-2">Creative Tools</h4>
+      <p class="text-sm">Graphic Design | Video Editing</p>
+    </div>
+
+    <!-- Skill Card -->
+    <div @click="skill = {
+      title: 'Email Marketing | Off-Page SEO',
+      description: 'Experienced in outreach strategies, email campaigns, and improving search rankings through link-building and guest posting ...'
+    }"
+      class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer text-center p-6">
+      <h4 class="text-xl font-semibold mb-2">Marketing</h4>
+      <p class="text-sm">Email Marketing | Off-Page SEO</p>
+    </div>
+
+    <!-- Skill Card -->
+    <div @click="skill = {
+      title: 'Blogging | Content Writing',
+      description: 'Able to write SEO-optimized, engaging blog content ... Published articles on WordPress related to productivity and freelancing ...'
+    }"
+      class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer text-center p-6">
+      <h4 class="text-xl font-semibold mb-2">Writing</h4>
+      <p class="text-sm">Blogging | Content Writing</p>
+    </div>
+
+    <!-- Skill Card -->
+    <div @click="skill = {
+      title: 'Web & App Development',
+      description: 'Knowledge of building responsive web layouts using Tailwind, Alpine.js, and understanding basic app architecture and creating apps using kotlin ...'
+    }"
+      class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer text-center p-6">
+      <h4 class="text-xl font-semibold mb-2">Development</h4>
+      <p class="text-sm">Web & App Development</p>
+    </div>
+
+  </div>
+
+  <!-- Skills Modal -->
+  <div x-show="skill" x-transition x-cloak class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+    <div class="bg-blue-950 text-white rounded-lg overflow-hidden max-w-xl w-full mx-4 relative p-6 shadow-lg">
+      <button @click="skill = null" class="absolute top-3 right-4 text-white text-2xl hover:text-yellow-300">&times;</button>
+      <h4 class="text-2xl font-bold mb-4" x-text="skill.title"></h4>
+      <p class="text-sm text-gray-200" x-text="skill.description"></p>
+    </div>
+  </div>
+</section>
+
+<!-- Semester Projects Section -->
+<section id="Academic" class="max-w-6xl mx-auto py-20 px-6 scroll-mt-24" x-data="{ selected: null }">
+  <h3 class="text-3xl font-bold mb-10 text-center text-white">Academic Projects</h3>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+    <!-- Project 1 -->
+    <div @click="selected = {
+      title: 'Two Player Chess',
+      media: ['chess 1.png', 'chess 3.mp4', 'chess 2.png'],
+      description: 'This project is a fully functional chess game implemented using fundamental concepts of Data Structures. The game simulates a standard chessboard, with all the essential rules and moves of chess accurately modeled. It demonstrates efficient use of DSA to manage game state, validate moves, and ensure optimal performance.',
+      semester: '3rd Semester',
+      partners: ['Razaullah Khan', 'Rayan Badar'],
+      github: 'https://github.com/nayar-900/Chess-project'
+    }" class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer">
+      <div class="p-6">
+        <h4 class="text-xl font-semibold mb-2">Two Player Chess</h4>
+        <p class="text-sm">C++ | DS | OOP</p>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div @click="selected = {
+      title: 'Spam Email Detector Model',
+      media: ['spam 1.png', 'spam.mp4', 'Spam 2.png'],
+      description: 'A Python and Excel-based project that demonstrates real-time spam email detection using the Naive Bayes theorem and it includes a GUI built with Tkinter, data visualization using Matplotlib, and an Excel implementation with formulas — ideal for understanding both programming and statistical foundations of machine learning.',
+      semester: '4th Semester',
+      partners: ['Rayan Badar', 'Sumaira Majeed'],
+      github: 'https://github.com/nayar-900/Spam-Ham-Email-Detection-using-Naive-Bayes-Theorem/tree/main'
+    }" class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer">
+      <div class="p-6">
+        <h4 class="text-xl font-semibold mb-2">Spam Email Detector</h4>
+        <p class="text-sm">Python | Pandas | NLTK </p>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div @click="selected = {
+      title: 'TraceIt: Lost and Found Management App',
+      media: ['traceit 1.png', 'traceit.mp4', 'traceit 2.png', 'traceit 3.png', 'traceit 4.png', 'traceit 5.png'],
+      description: 'TraceIt is a smart and intuitive Android application that helps users report and recover lost or found items through a real-time, verified platform. With features like SQL and Firebase integration, secure user authentication, admin moderation, and chat support, TraceIt simplifies the process of reconnecting people with their lost belongings.',
+      semester: '4th Semester',
+      partners: ['Shariq Khan', 'Rayan Badar', 'Usman Ghani'],
+      github: 'https://github.com/nayar-900/TraceIt-a-Lost-and-Found-Management-Application'
+    }" class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer">
+      <div class="p-6">
+        <h4 class="text-xl font-semibold mb-2">TraceIt: Lost & Found Management App</h4>
+        <p class="text-sm">SQL | DataBase | Kotlin | PHP | Firebase</p>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div @click="selected = {
+      title: 'Cocktail Shaker Sort Simulation',
+      media: ['cocktail 1.png', 'cocktail.mp4', 'cocktail 2.png'],
+      description: 'A visual simulation of Cocktail Shaker Sort implemented with multi-language support and interactive UI. This helped demonstrate sorting logic through animations and user input.',
+      semester: '4th Semester',
+      partners: ['Razaullah Khan', 'Rayan Badar'],
+      github: 'https://github.com/nayar-900/Cocktail-Shaker-Sort'
+    }" class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer">
+      <div class="p-6">
+        <h4 class="text-xl font-semibold mb-2">Cocktail Shaker Sort Simulation</h4>
+        <p class="text-sm">Python | CSS | Java | C++ | HTML</p>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div @click="selected = {
+      title: 'RISC-V Single Cycle Processor Manufacture',
+      media: ['riscv 1.png', 'riscv.mp4', 'riscv 2.png'],
+      description: 'Built a single-cycle RISC-V processor from scratch using Visual Studio and ModelSim. This project implemented fundamental computer architecture and instruction cycle management.',
+      semester: '4th Semester',
+      partners: ['Rehan Ali', 'Shariq Khan', 'Rayan Badar', 'M. Yasir'],
+      github: 'https://github.com/nayar-900/RISC-V-Processor'
+    }" class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer">
+      <div class="p-6">
+        <h4 class="text-xl font-semibold mb-2">RISC-V Single Cycle Processor Manufacture</h4>
+        <p class="text-sm">Assembly Language | Visual Studio | ModelSim</p>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div @click="selected = {
+      title: 'Review Paper',
+      media: ['toa 1.png', 'toa.mp4', 'toa 2.png'],
+      description: 'A collaborative review paper covering the modern trends in technology research. Includes literature summaries, academic formatting via LaTeX, and referencing.',
+      semester: '4th Semester',
+      partners: ['Shariq Khan', 'Rayan Badar', 'Ali Haider', 'M. Bilal'],
+      github: 'https://github.com/nayar-900/ToA-Review-Paper'
+    }" class="bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 cursor-pointer">
+      <div class="p-6">
+        <h4 class="text-xl font-semibold mb-2">Review Paper</h4>
+        <p class="text-sm">LaTeX | MS Word | Turnitin</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal -->
+<div x-show="selected" x-transition x-cloak class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center" x-data="{ previewMedia: null }">
+
+  <div class="bg-blue-950 text-white rounded-lg overflow-hidden max-w-6xl w-full mx-4 relative shadow-2xl border border-yellow-500">
+    
+    <!-- Scrollable Content -->
+    <div class="max-h-[90vh] overflow-y-auto p-6">
+      
+      <!-- Close Button -->
+      <button 
+        @click="selected = null" 
+        class="absolute top-4 right-4 text-white text-4xl font-bold hover:text-yellow-400 transition duration-300 z-50"
+        aria-label="Close Modal">
+        &times;
+      </button>
+
+      <!-- Media Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+        <template x-for="(media, index) in selected.media" :key="index">
+          <div class="rounded overflow-hidden shadow-md cursor-pointer" @click="previewMedia = media">
+            <template x-if="media.endsWith('.mp4')">
+              <video :src="media" class="w-full h-48 object-cover rounded" muted></video>
+            </template>
+            <template x-if="!media.endsWith('.mp4')">
+              <img :src="media" class="w-full h-48 object-cover rounded" alt="Project Media" />
+            </template>
+          </div>
+        </template>
+      </div>
+
+      <!-- Project Info -->
+      <h4 class="text-2xl font-bold text-yellow-400 hover:text-blue-300 mb-3" x-text="selected.title"></h4>
+      <p class="text-sm text-gray-200 leading-relaxed mb-4" x-text="selected.description"></p>
+      
+      <p class="text-sm mb-2">
+        <strong>Semester:</strong> <span x-text="selected.semester"></span>
+      </p>
+
+      <template x-if="selected.partners && selected.partners.length">
+        <p class="text-sm mb-2">
+          <strong>Group Members:</strong> <span x-text="selected.partners.join(', ')"></span>
+        </p>
+      </template>
+
+      <template x-if="selected.github">
+        <p class="text-sm">
+          <strong>GitHub:</strong>
+          <a :href="selected.github" target="_blank" class="text-blue-300 hover:text-yellow-400 underline">View Repository</a>
+        </p>
+      </template>
+    </div>
+  </div>
+
+  <!-- Fullscreen Preview Modal -->
+  <div x-show="previewMedia" x-transition x-cloak class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+    <div class="relative max-w-5xl w-full mx-4">
+      <button 
+        @click="previewMedia = null" 
+        class="absolute top-4 right-4 text-white text-4xl font-bold hover:text-yellow-400 transition duration-300 z-50"
+        aria-label="Close Preview">
+        &times;
+      </button>
+
+      <template x-if="previewMedia && previewMedia.endsWith('.mp4')">
+        <video :src="previewMedia" class="w-full max-h-[90vh] object-contain rounded" controls autoplay></video>
+      </template>
+
+      <template x-if="previewMedia && !previewMedia.endsWith('.mp4')">
+        <img :src="previewMedia" class="w-full max-h-[90vh] object-contain rounded" />
+      </template>
+    </div>
+  </div>
+</div>
+
+</section>
+
+  <!-- Experience Section -->
+<section id="experience" class="max-w-5xl mx-auto py-20 px-6 scroll-mt-24">
+  <h3 class="text-3xl font-bold mb-10 text-center text-white">Professional Experience</h3>
+
+  <div class="space-y-10 text-gray-300">
+
+    <!-- Head of Marketing -->
+    <div class="flex flex-col md:flex-row justify-between border-b border-gray-700 pb-6">
+      <div>
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i class="fas fa-bullhorn text-yellow-400"></i> Head of Marketing
+        </h4>
+        <p class="text-gray-400">
+          <a href="https://www.linkedin.com/company/digital-empowerment-network/" target="_blank" class="text-blue-700 hover:text-yellow-300">
+            Digital Empowerment Network | Namal University
+          </a>
+        </p>
+      </div>
+      <p class="text-sm mt-2 md:mt-0 text-right text-gray-400">Jul 2024 – Jul 2025</p>
+    </div>
+
+    <!-- Content Manager -->
+    <div class="flex flex-col md:flex-row justify-between border-b border-gray-700 pb-6">
+      <div>
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i class="fas fa-tasks text-yellow-400"></i> Content Manager
+        </h4>
+        <p class="text-gray-400">
+          <a href="https://nayar900.home.blog/home/" target="_blank" class="text-blue-700 hover:text-yellow-300">
+            WordPress
+          </a>
+        </p>
+      </div>
+      <p class="text-sm mt-2 md:mt-0 text-right text-gray-400">Dec 2024 – Present</p>
+    </div>
+
+    <!-- Blogger -->
+    <div class="flex flex-col md:flex-row justify-between border-b border-gray-700 pb-6">
+      <div>
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i class="fas fa-blog text-yellow-400"></i> Blogger
+        </h4>
+        <p class="text-gray-400">
+          <a href="https://nayar900.home.blog/" target="_blank" class="text-blue-700 hover:text-yellow-300">
+            Jetpack by WordPress
+          </a>
+        </p>
+      </div>
+      <p class="text-sm mt-2 md:mt-0 text-right text-gray-400">Dec 2022 – Apr 2025</p>
+    </div>
+
+    <!-- Student Member -->
+    <div class="flex flex-col md:flex-row justify-between border-b border-gray-700 pb-6">
+      <div>
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i class="fas fa-user-graduate text-yellow-400"></i> Student Member
+        </h4>
+        <p class="text-gray-400">
+          <a href="https://ieee-collabratec.ieee.org/app/myprofile/about" target="_blank" class="text-blue-700 hover:text-yellow-300">
+            IEEE
+          </a>
+        </p>
+      </div>
+      <p class="text-sm mt-2 md:mt-0 text-right text-gray-400">June 2025 – Present</p>
+    </div>
+
+        <!-- Publicity and Public visibility lead -->
+    <div class="flex flex-col md:flex-row justify-between border-b border-gray-700 pb-6">
+      <div>
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i class="fas fa-share-from-square text-yellow-400"></i> Publicity and Public Visibility Lead
+        </h4>
+        <p class="text-gray-400">
+          <a href="https://www.linkedin.com/in/ieee-namal-student-branch-342b58219/" target="_blank" class="text-blue-700 hover:text-yellow-300">
+            IEEE Namal Student Branch
+          </a>
+        </p>
+      </div>
+      <p class="text-sm mt-2 md:mt-0 text-right text-gray-400">June 2025 – Present</p>
+    </div>
+
+    <!-- Content Writing Head -->
+    <div class="flex flex-col md:flex-row justify-between border-b border-gray-700 pb-6">
+      <div>
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i class="fas fa-feather-alt text-yellow-400"></i> Content Writing Head
+        </h4>
+        <p class="text-gray-400">
+          <a href="https://www.facebook.com/NamalLDS" target="_blank" class="text-blue-700 hover:text-yellow-300">
+            Namal Literary and Debating Society
+          </a>
+        </p>
+      </div>
+      <p class="text-sm mt-2 md:mt-0 text-right text-gray-400">Aug 2024 – Present</p>
+    </div>
+
+    <!-- Outreach Specialist -->
+    <div class="flex flex-col md:flex-row justify-between">
+      <div>
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i class="fas fa-share-nodes text-yellow-400"></i> Outreach Specialist
+        </h4>
+        <p class="text-gray-400">
+          <a href="https://www.hzaseoservices.com/" target="_blank" class="text-blue-700 hover:text-yellow-300">
+            IZOOF
+          </a>
+        </p>
+      </div>
+      <p class="text-sm mt-2 md:mt-0 text-right text-gray-400">Aug 2024 – Oct 2024</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Work Platforms Section -->
+<section id="platforms" class="max-w-6xl mx-auto py-20 px-6 scroll-mt-24">
+  <h3 class="text-3xl font-bold mb-10 text-center text-white">Freelancing Work Platforms</h3>
+
+  <div class="flex flex-wrap justify-center items-center gap-8 bg-blue-950 px-6 py-8 rounded-lg shadow-xl">
+    
+    <!-- Fiverr -->
+    <a href="https://www.fiverr.com/YOUR_USERNAME" target="_blank" class="hover:scale-105 transition duration-300">
+      <img src="fiverr.png" alt="Fiverr" class="h-20 md:h-24 rounded-lg">
+    </a>
+
+    <!-- Upwork -->
+    <a href="https://www.upwork.com/freelancers/~YOUR_ID" target="_blank" class="hover:scale-105 transition duration-300">
+      <img src="upwork.png" alt="Upwork" class="h-20 md:h-24 rounded-lg">
+    </a>
+
+    <!-- Rozee -->
+    <a href="https://www.rozee.pk/jobseeker/YOUR_PROFILE" target="_blank" class="hover:scale-105 transition duration-300">
+      <img src="rozee.png" alt="Rozee" class="h-20 md:h-24 rounded-lg">
+    </a>
+
+    <!-- Gig Falcon -->
+    <a href="https://gigfalcon.com/users/YOUR_USERNAME" target="_blank" class="hover:scale-105 transition duration-300">
+      <img src="gig.png" alt="Gig Falcon" class="h-20 md:h-24 rounded-lg">
+    </a>
+
+    <!-- Freelancer -->
+    <a href="https://www.freelancer.com/u/YOUR_USERNAME" target="_blank" class="hover:scale-105 transition duration-300">
+      <img src="freelancer.png" alt="Freelancer" class="h-20 md:h-24 rounded-lg">
+    </a>
+
+    <!-- Reddit -->
+    <a href="https://www.reddit.com/user/YOUR_USERNAME" target="_blank" class="hover:scale-105 transition duration-300">
+      <img src="reddit.png" alt="Reddit" class="h-20 md:h-24 rounded-lg">
+    </a>
+
+  </div>
+</section>
+
+  <!-- Education Section -->
+<section id="education" class="max-w-5xl mx-auto py-20 px-6 scroll-mt-24">
+  <h3 class="text-3xl font-bold mb-10 text-center text-white">Education</h3>
+
+  <div class="space-y-10 text-gray-300">
+
+    <!-- Degree 1 -->
+    <div class="flex flex-col md:flex-row justify-between border-b border-gray-700 pb-6">
+      <div>
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i class="fas fa-laptop-code text-yellow-400"></i> BS Computer Science
+        </h4>
+        <p class="text-gray-400">
+          <a href="https://www.namal.edu.pk/" target="_blank" class="text-blue-700 hover:text-yellow-300">
+            Namal University, Mianwali
+          </a>
+        </p>
+      </div>
+      <p class="text-sm mt-2 md:mt-0 text-right text-gray-400">2023 – Present</p>
+    </div>
+
+    <!-- Degree 2 -->
+    <div class="flex flex-col md:flex-row justify-between border-b border-gray-700 pb-6">
+      <div>
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i class="fas fa-briefcase text-yellow-400"></i> BBA Business Administration
+        </h4>
+        <p class="text-gray-400">
+          <a href="https://www.uopeople.edu/" target="_blank" class="text-blue-700 hover:text-yellow-300">
+            University of the People
+          </a>
+        </p>
+      </div>
+      <p class="text-sm mt-2 md:mt-0 text-right text-gray-400">2024 – Present</p>
+    </div>
+
+    <!-- Degree 3 -->
+    <div class="flex flex-col md:flex-row justify-between">
+      <div>
+        <h4 class="text-xl font-semibold flex items-center gap-2">
+          <i class="fas fa-flask text-yellow-400"></i> Pre-Engineering
+        </h4>
+        <p class="text-gray-400">
+          <a href="https://pgc.edu/" target="_blank" class="text-blue-700 hover:text-yellow-300">
+            Punjab Group of Colleges
+          </a>
+        </p>
+      </div>
+      <p class="text-sm mt-2 md:mt-0 text-right text-gray-400">2021 – 2023</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Certificates Section -->
+<section id="Certificates" class="max-w-6xl mx-auto py-20 px-6" 
+  x-data="{ showMore: false, activeCert: null }">
+  
+  <h3 class="text-3xl font-bold mb-10 text-center text-white">Certificates</h3>
+
+  <!-- Initial Certificates Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    
+    <!-- Certificate Card -->
+    <template x-for="(cert, index) in [
+      { id: 1, title: 'AI Agents for Beginners', img: 'c1.jpeg' },
+      { id: 2, title: 'Business Communications', img: 'c2.png' },
+      { id: 3, title: 'Cornerstone OnDemand Foundation', img: 'c3.png' }
+    ]" :key="cert.id">
+      <div 
+        @click="activeCert = cert.id" 
+        class="cursor-pointer bg-blue-950 hover:bg-yellow-500 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+        <img :src="cert.img" :alt="cert.title" class="w-full h-56 object-cover">
+        <div class="p-4 text-center text-sm text-white hover:text-black" x-text="cert.title"></div>
+      </div>
+    </template>
+  </div>
+
+  <!-- Hidden Certificates -->
+  <div x-show="showMore" x-transition x-cloak class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
+    
+    <template x-for="(cert, index) in [
+      { id: 4, title: 'VS Code Extension Creation', img: 'c4.png' },
+      { id: 5, title: 'Build a Free Website with WordPress', img: 'c5.png' },
+      { id: 6, title: 'Word Processing', img: 'c6.png' }
+    ]" :key="cert.id">
+      <div 
+        @click="activeCert = cert.id" 
+        class="cursor-pointer bg-blue-950 hover:bg-yellow-500 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+        <img :src="cert.img" :alt="cert.title" class="w-full h-56 object-cover">
+        <div class="p-4 text-center text-sm text-white hover:text-black" x-text="cert.title"></div>
+      </div>
+    </template>
+
+  </div>
+
+  <!-- Show More Toggle Button -->
+  <div class="mt-8 text-center">
+    <button 
+      @click="showMore = !showMore" 
+      class="px-6 py-2 bg-blue-950 hover:bg-yellow-500 text-white font-semibold rounded-full transition"
+      x-text="showMore ? 'Show Less' : 'Show More'">
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <template x-if="activeCert">
+    <div 
+      class="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center px-4" 
+      x-transition 
+      @click.self="activeCert = null">
+
+      <div class="bg-blue-950 text-white rounded-lg overflow-hidden max-w-xl w-full p-6 relative border border-yellow-400 shadow-lg">
+        <button 
+          @click="activeCert = null" 
+          class="absolute top-2 right-4 text-3xl text-white hover:text-yellow-300">
+          &times;
+        </button>
+
+        <!-- Dynamic Modal Content -->
+        <template x-if="activeCert === 1">
+          <div>
+            <img src="c1.jpeg" alt="AI Agents for Beginners" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">AI Agents for Beginners</h4>
+            <p class="text-sm leading-relaxed text-gray-200">
+              Completed a foundational course in AI agents, gaining insight into intelligent systems and their real-world applications ... Strengthened my understanding of AI concepts to support future work in automation, system design, and machine learning ...
+            </p>
+          </div>
+        </template>
+
+        <template x-if="activeCert === 2">
+          <div>
+            <img src="c2.png" alt="Business Communications" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">Business Communications</h4>
+            <p class="text-sm leading-relaxed text-gray-200">
+              Learned to craft effective, audience-targeted communication using appropriate channels and strategies ... Strengthened my ability to communicate professionally in both business and tech environments ...
+            </p>
+          </div>
+        </template>
+
+        <template x-if="activeCert === 3">
+          <div>
+            <img src="c3.png" alt="Cornerstone OnDemand Foundation
+" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">Cornerstone OnDemand Foundation
+</h4>
+            <p class="text-sm leading-relaxed text-gray-200">
+              Completed the MEAL Essentials Certificate from the Cornerstone OnDemand Foundation through DisasterReady last year ... The course enhanced my understanding of MEAL frameworks, data analysis, program evaluation, and accountability systems in humanitarian and development contexts ...
+            </p>
+          </div>
+        </template>
+
+        <template x-if="activeCert === 4">
+          <div>
+            <img src="c4.png" alt="VS Code Extension Creation" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">VS Code Extension Creation</h4>
+            <p class="text-sm leading-relaxed text-gray-200">
+              Completed a Microsoft Student Ambassadors event on “Creating a VS Code Extension,” gaining hands-on experience in building developer tools using VS Code APIs ...
+            </p>
+          </div>
+        </template>
+
+        <template x-if="activeCert === 5">
+          <div>
+            <img src="c5.png" alt="Build a Free Website with WordPress" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">Build a Free Website with WordPress</h4>
+            <p class="text-sm leading-relaxed text-gray-200">
+              Completed a guided project on building a free website using WordPress through Coursera, covering themes, plugins, content customization, and live publishing ...
+            </p>
+          </div>
+        </template>
+
+        <template x-if="activeCert === 6">
+          <div>
+            <img src="c6.png" alt="Word Processing" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">Word Processing</h4>
+            <p class="text-sm leading-relaxed text-gray-200">
+              Completed a comprehensive course on word processing fundamentals, including formatting, layout, and document professionalism through Saylor Academy ...
+            </p>
+          </div>
+        </template>
+
+      </div>
+    </div>
+  </template>
+</section>
+
+<!-- Achievements Section -->
+<section id="Achievements" class="max-w-6xl mx-auto py-20 px-6" 
+  x-data="{ showMore: false, activeAch: null }">
+
+  <h3 class="text-3xl font-bold mb-10 text-center text-white">Achievements</h3>
+
+  <!-- Initial Achievements -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    
+    <!-- Achievement 1 -->
+    <div @click="activeAch = 1" class="cursor-pointer bg-blue-950 hover:bg-yellow-500 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+      <img src="a1.png" alt="UoP Student Ambassador" class="w-full h-56 object-cover">
+      <div class="p-4 text-center text-sm text-white hover:text-black">UoP Student Ambassador</div>
+    </div>
+
+    <!-- Achievement 2 -->
+    <div @click="activeAch = 2" class="cursor-pointer bg-blue-950 hover:bg-yellow-500 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+      <img src="a2.png" alt="UoP Orientation Badge" class="w-full h-56 object-cover">
+      <div class="p-4 text-center text-sm text-white hover:text-black">UoP Orientation Badge</div>
+    </div>
+
+    <!-- Achievement 3 -->
+    <div @click="activeAch = 3" class="cursor-pointer bg-blue-950 hover:bg-yellow-500 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+      <img src="a3.png" alt="Dev Weekends Fellowship" class="w-full h-56 object-cover">
+      <div class="p-4 text-center text-sm text-white hover:text-black">Dev Weekends Fellowship</div>
+    </div>
+  </div>
+
+  <!-- Hidden Achievements Section -->
+  <div x-show="showMore" x-transition x-cloak class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
+
+    <!-- Achievement 4 -->
+    <div @click="activeAch = 4" class="cursor-pointer bg-blue-950 hover:bg-yellow-500 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+      <img src="a4.png" alt="UET-ACM Fellowship" class="w-full h-56 object-cover">
+      <div class="p-4 text-center text-sm text-white hover:text-black">UET-ACM Fellowship</div>
+    </div>
+
+    <!-- Achievement 5 -->
+    <div @click="activeAch = 5" class="cursor-pointer bg-blue-950 hover:bg-yellow-500 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+      <img src="a5.png" alt="IEEE Membership" class="w-full h-56 object-cover">
+      <div class="p-4 text-center text-sm text-white hover:text-black">IEEE Membership</div>
+    </div>
+
+    <!-- Achievement 6 -->
+    <div @click="activeAch = 6" class="cursor-pointer bg-blue-950 hover:bg-yellow-500 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+      <img src="a6.png" alt="Canva 50 Design Milestone Badge" class="w-full h-56 object-cover">
+      <div class="p-4 text-center text-sm text-white hover:text-black">Canva 50 Design Milestone Badge</div>
+    </div>
+  </div>
+
+  <!-- Show More Button -->
+  <div class="mt-8 text-center">
+    <button 
+      @click="showMore = !showMore" 
+      class="px-6 py-2 bg-blue-950 hover:bg-yellow-500 text-white font-semibold rounded-full transition"
+      x-text="showMore ? 'Show Less' : 'Show More'">
+    </button>
+  </div>
+
+  <!-- MODAL POPUP -->
+  <template x-if="activeAch">
+    <div class="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center px-4" x-transition @click.self="activeAch = null">
+      <div class="bg-blue-950 text-white rounded-lg overflow-hidden max-w-xl w-full p-6 relative shadow-lg border border-yellow-400">
+        <button @click="activeAch = null" class="absolute top-2 right-4 text-3xl text-white hover:text-yellow-300">&times;</button>
+
+        <!-- MODAL CONTENT -->
+        <template x-if="activeAch === 1">
+          <div>
+            <img src="a1.png" alt="UoP Student Ambassador" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">UoP Student Ambassador</h4>
+            <p class="text-sm text-gray-200">
+              Selected as a UoPeople Ambassador to promote global access to education, guide prospective students, and represent the university’s values of equality and opportunity ...
+            </p>
+          </div>
+        </template>
+
+        <template x-if="activeAch === 2">
+          <div>
+            <img src="a2.png" alt="UoP Orientation Badge" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">UoP Orientation Badge</h4>
+            <p class="text-sm text-gray-200">
+              Successfully completed the official orientation program of University of the People, covering academic ethics, study guidelines, platform usage, and community engagement ...
+            </p>
+          </div>
+        </template>
+
+        <template x-if="activeAch === 3">
+          <div>
+            <img src="a3.png" alt="Dev Weekends Fellowship" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">Dev Weekends Fellowship</h4>
+            <p class="text-sm text-gray-200">
+              Selected as a Fellow for the Dev Weekends' Summer Fellowship 2025 ... This fellowship is all about becoming job-ready, industry-ready, and grind-ready ... 
+            </p>
+          </div>
+        </template>
+
+        <template x-if="activeAch === 4">
+          <div>
+            <img src="a4.png" alt="UET-ACM Fellowship" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">UET-ACM Fellowship</h4>
+            <p class="text-sm text-gray-200">
+              Excited to announce my selection for the UET-ACM Fellowship Program 2025 ! This opportunity marks the beginning of a new chapter filled with learning, growth, and impactful collaboration with some of the most passionate minds in tech ...
+            </p>
+          </div>
+        </template>
+
+        <template x-if="activeAch === 5">
+          <div>
+            <img src="a5.png" alt="IEEE Membership" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">IEEE Membership</h4>
+            <p class="text-sm text-gray-200">
+              Became a registered Student Member of IEEE Islamabad Section for the year 2025 to engage in global tech innovation, student development, and professional engineering communities ...
+            </p>
+          </div>
+        </template>
+
+        <template x-if="activeAch === 6">
+          <div>
+            <img src="a6.png" alt="Canva 50 Design Milestone Badge" class="w-full h-auto rounded mb-4">
+            <h4 class="text-xl font-bold text-yellow-400 mb-2">Canva 50 Design Milestone Badge</h4>
+            <p class="text-sm text-gray-200">
+              This badge isn't just a number — it reflects countless hours of creativity, learning, experimenting with layouts, and building visual content that communicates clearly and beautifully ...
+From social media posts and posters to event graphics and infographics — each design has helped me grow as a self-taught designer and content creator ...
+            </p>
+          </div>
+        </template>
+
+      </div>
+    </div>
+  </template>
+</section>
+
+<!-- Projects Section -->
+<section id="Projects" class="max-w-6xl mx-auto py-20 px-6" 
+  x-data="{ showMore: false, activeProject: null, fullImage: null }">
+
+  <h3 class="text-3xl font-bold mb-10 text-center text-white">Other Projects</h3>
+
+  <!-- Initial Projects -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+    <!-- Project 1 -->
+    <div @click="activeProject = {
+      title: 'Portfolio Website',
+      image: 'portfolio.png',
+      description: 'Designed a well organised and conceptual based website portfolio showcasing my academic and professional journey.',
+      technologies: 'Java Script | CSS | HTML',
+      team: 'Solo Project',
+      github: 'https://github.com/nayar-900/Portfolio'
+    }"
+    class="cursor-pointer bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+      <img src="portfolio.png" alt="Portfolio Website" class="w-full h-56 object-cover">
+      <div class="p-4 text-center text-sm">Portfolio Website</div>
+    </div>
+
+    <!-- Project 2 -->
+    <div @click="activeProject = {
+      title: 'Online Shopping System',
+      image: 'digital.png',
+      description: 'Built a Console based Online Shopping System by using core concepts of Object Oriented Programming in C++.',
+      technologies: 'C++ | OOP | Code Blocks',
+      semester: '2nd Semester',
+      team: 'Group of 4',
+      github: 'https://github.com/nayar-900/Online-Shopping-System'
+    }"
+    class="cursor-pointer bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+      <img src="digital.png" alt="Online Shopping System" class="w-full h-56 object-cover">
+      <div class="p-4 text-center text-sm">Online Shopping System</div>
+    </div>
+
+    <!-- Project 3 -->
+    <div @click="activeProject = {
+      title: 'Mini ATM System',
+      image: 'assembly.png',
+      description: 'Created an automated bank management system with all of the features included for bank ATM useage.',
+      technologies: 'Visual studio | x86 | Assembly Language',
+      semester: '3rd Semester',
+      team: 'Group of 2',
+      github: 'https://github.com/nayar-900/Mini-ATM-Simulation'
+    }"
+    class="cursor-pointer bg-blue-950 hover:bg-yellow-500 text-white hover:text-black rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+      <img src="assembly.png" alt="Mini ATM  System" class="w-full h-56 object-cover">
+      <div class="p-4 text-center text-sm">Mini ATM System</div>
+    </div>
+  </div>
+
+  <!-- Hidden Projects Section -->
+  <div x-show="showMore" x-transition x-cloak class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
+    <!-- You can add more projects here -->
+  </div>
+
+  <!-- Toggle Button -->
+  <div class="mt-8 text-center">
+    <button 
+      @click="showMore = !showMore" 
+      class="px-6 py-2 bg-blue-950 hover:bg-yellow-500 text-white font-semibold rounded-full transition"
+      x-text="showMore ? 'Show Less' : 'Show More'">
+    </button>
+  </div>
+
+  <!-- Modal for Project Info -->
+  <template x-if="activeProject">
+    <div class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center px-4" x-transition @click.self="activeProject = null">
+      <div class="bg-blue-950 text-white rounded-lg overflow-hidden max-w-xl w-full p-6 relative border border-yellow-400 shadow-lg">
+        <button @click="activeProject = null" class="absolute top-2 right-4 text-3xl text-white hover:text-yellow-400">&times;</button>
+        
+        <!-- Clickable image -->
+        <img 
+          :src="activeProject.image" 
+          alt="" 
+          class="w-full h-56 object-cover rounded mb-4 cursor-pointer"
+          @click="fullImage = activeProject.image"
+        >
+
+        <h4 class="text-2xl font-bold mb-2 text-yellow-400" x-text="activeProject.title"></h4>
+        <p class="text-sm mb-3 text-gray-200" x-text="activeProject.description"></p>
+        <p class="text-sm"><span class="font-semibold text-yellow-400">Technologies:</span> <span x-text="activeProject.technologies"></span></p>
+        <p class="text-sm"><span class="font-semibold text-yellow-400">Semester:</span> <span x-text="activeProject.semester"></span></p>
+        <p class="text-sm mb-3"><span class="font-semibold text-yellow-400">Team:</span> <span x-text="activeProject.team"></span></p>
+
+        <template x-if="activeProject.github && activeProject.github !== '#'">
+          <a :href="activeProject.github" target="_blank" class="inline-block mt-4 bg-yellow-500 hover:bg-yellow-400 text-blue-950 px-4 py-2 rounded-full font-semibold transition">
+            View on GitHub
+          </a>
+        </template>
+      </div>
+    </div>
+  </template>
+
+  <!-- Lightbox Fullscreen Image Viewer -->
+  <template x-if="fullImage">
+    <div class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center" @click="fullImage = null" x-transition>
+      <div class="relative max-w-4xl w-full mx-4">
+        <button @click="fullImage = null" class="absolute top-2 right-4 text-4xl text-yellow-400 hover:text-white z-50">&times;</button>
+        <img :src="fullImage" alt="Full View" class="w-full h-auto rounded-lg shadow-2xl">
+      </div>
+    </div>
+  </template>
+
+</section>
+
+<!-- Feedback Section -->
+<section id="feedback" class="max-w-4xl mx-auto py-20 px-6 scroll-mt-24" x-data="{ submitted: false }">
+  <h3 class="text-3xl font-bold mb-10 text-center text-white">Leave Your Feedback</h3>
+
+  <!-- Form Block -->
+  <form x-show="!submitted" @submit.prevent="submitted = true; $refs.form.submit()" x-ref="form"
+        action="mailto:rayanbadar900@gmail.com" method="POST" enctype="text/plain"
+        class="bg-blue-950 p-8 rounded-lg shadow-lg space-y-6" x-transition>
+
+    <!-- Name -->
+    <div>
+      <label for="name" class="block text-sm font-semibold text-yellow-400 mb-1">Your Name</label>
+      <input type="text" id="name" name="Name" required
+             class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-yellow-400 focus:ring-yellow-300 focus:ring-1 outline-none transition">
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="email" class="block text-sm font-semibold text-yellow-400 mb-1">Your Email</label>
+      <input type="email" id="email" name="Email" required
+             class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-yellow-400 focus:ring-yellow-300 focus:ring-1 outline-none transition">
+    </div>
+
+    <!-- Message -->
+    <div>
+      <label for="message" class="block text-sm font-semibold text-yellow-400 mb-1">Message</label>
+      <textarea id="message" name="Message" rows="5" required
+                class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-yellow-400 focus:ring-yellow-300 focus:ring-1 outline-none transition"></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center">
+      <button type="submit"
+              class="px-6 py-2 bg-yellow-500 text-white font-semibold rounded-full hover:text-black transition duration-300">
+        Send Feedback
+      </button>
+    </div>
+  </form>
+
+  <!-- Success Message -->
+  <div x-show="submitted" x-transition class="text-center mt-10">
+    <h4 class="text-xl text-yellow-500 font-bold mb-4">Thank you ... !</h4>
+    <p class="text-gray-300">Your feedback has been sent successfully ... </p>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="max-w-5xl mx-auto py-20 px-6 scroll-mt-24">
+  <h3 class="text-3xl font-bold mb-10 text-center text-white">Contact Me</h3>
+
+  <!-- Email Contacts -->
+  <div class="grid sm:grid-cols-2 gap-8 text-center text-gray-300">
+
+    <!-- Personal Email -->
+    <div class="bg-blue-950 rounded-lg p-6 shadow-lg hover:shadow-yellow-500 transition duration-300">
+      <p class="text-xl font-semibold text-white mb-2 flex justify-center items-center space-x-2">
+        <i class="fas fa-envelope"></i>
+        <span>Personal Email</span>
+      </p>
+      <a href="mailto:rayanbadar900@gmail.com" class="block text-blue-400 hover:text-yellow-300 font-medium">
+        rayanbadar900@gmail.com
+      </a>
+      <p class="text-sm text-gray-400 mt-2">For freelance work, collaborations, or digital marketing inquiries.</p>
+    </div>
+
+    <!-- University Email -->
+    <div class="bg-blue-950 rounded-lg p-6 shadow-lg hover:shadow-yellow-500 transition duration-300">
+      <p class="text-xl font-semibold text-white mb-2 flex justify-center items-center space-x-2">
+        <i class="fas fa-university"></i>
+        <span>University Email</span>
+      </p>
+      <a href="mailto:bscs23f18@namal.edu.pk" class="block text-blue-400 hover:text-yellow-300 font-medium">
+        bscs23f18@namal.edu.pk
+      </a>
+      <p class="text-sm text-gray-400 mt-2">For academic communication, university tasks, or research topics.</p>
+    </div>
+  </div>
+
+  <!-- Direct Chat -->
+  <section id="instant" class="mt-12 text-center">
+    <h4 class="text-2xl font-bold text-white mb-4">Chat with Me Instantly</h4>
+    <p class="text-gray-400 text-sm mb-4">Click the button below to start a direct WhatsApp chat.</p>
+
+    <a href="https://wa.me/923480989572" target="_blank"
+       class="inline-flex items-center space-x-2 px-6 py-3 bg-yellow-500 text-white hover:text-black font-semibold rounded-full shadow-lg transition duration-300">
+      <i class="fab fa-whatsapp text-xl"></i>
+      <span>Chat on WhatsApp</span>
+    </a>
+  </section>
+
+  <!-- Divider -->
+  <div class="border-t border-gray-600 my-10 w-1/2 mx-auto"></div>
+
+  <!-- Social Links -->
+  <h4 class="text-2xl font-bold text-white text-center mb-6">Connect with Me</h4>
+  <div class="flex justify-center items-center space-x-6 text-3xl">
+    <a href="https://www.facebook.com/profile.php?id=100061549966675" target="_blank" class="hover:text-blue-700" title="Facebook">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/rayan-badar-141ab835a/" target="_blank" class="hover:text-blue-400" title="LinkedIn">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://www.instagram.com/nayar_900/" target="_blank" class="hover:text-pink-500" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://github.com/nayar-900" target="_blank" class="hover:text-gray-400" title="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 border-t border-gray-700">
+    <p class="text-white">&copy; 2025 Rayan Badar. All rights reserved.</p>
+  </footer>
+
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+particlesJS('particles-js', {
+  "particles": {
+    "number": { "value": 80 },
+    "color": { "value": "#FACC15" },  // Light blue (Tailwind's blue-400)
+    "size": { "value": 5 },
+    "move": { "speed": 5 },
+    "line_linked": {
+      "enable": true,
+      "opacity": 0.5,
+      "color": "#60A5FA"  // Optional: match line color to particles
+    },
+    "shape": { "type": "circle" }
+  },
+  "interactivity": {
+    "events": { "onhover": { "enable": true, "mode": "repulse" } }
+  }
+});
+
+  </script>
+
+<!-- Typed.js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typed = new Typed('#typing', {
+    strings: ['Graphic Designer', 'Computer Scientist', 'Content Writer', 'SEO Specialist'],
+    typeSpeed: 60,
+    backSpeed: 40,
+    backDelay: 1000,
+    loop: false, // Do not loop infinitely
+    onComplete: function () {
+      document.getElementById('typing').style.display = 'none';
+      document.getElementById('all-titles').classList.remove('hidden');
+    }
+  });
+</script>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+<button onclick="topFunction()" id="backToTop" title="Go to top"
+  class="fixed bottom-6 right-6 bg-yellow-500 font-semibold text-white hover:text-black px-3 py-2 rounded-full shadow-lg hidden">
+  ↑
+</button>
+
+<script>
+  const btn = document.getElementById("backToTop");
+  window.onscroll = () => 
+  {
+    btn.style.display = (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200)
+      ? "block" : "none";
+  };
+  function topFunction() 
+  {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+<a href="#contact" class="fixed bottom-6 left-6 z-40 bg-yellow-500 text-white font-semibold hover:text-black px-4 py-2 rounded-full shadow-lg hover:bg-yellow-400 z-50">
+  Contact Me
+</a>
+
+<script>
+  window.addEventListener('load', () => {
+    document.getElementById('preloader').style.display = 'none';
+  });
+</script>
+
+<script>
+  // Highlight active nav item on scroll
+  window.addEventListener("scroll", () => {
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a");
+
+    let current = "";
+
+    sections.forEach(section => 
+    {
+      const sectionTop = section.offsetTop - 100;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach(link => 
+    {
+      link.classList.remove("text-yellow-500");
+      if (link.getAttribute("href").includes(current)) {
+        link.classList.add("text-yellow-500");
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

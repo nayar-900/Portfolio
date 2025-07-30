@@ -4,7 +4,7 @@
 Welcome to my **personal portfolio website** — a sleek, responsive, and modern one-page design built using **HTML5**, **Tailwind CSS**, **Alpine.js**, and **Animate.css**. This site showcases my academic background, skills, projects, certifications, and contact details.
 
 <div align="center">
-  <img src="portfolio-preview.png" alt="Portfolio Preview" width="800"/>
+  <img src="portfolio.png" alt="Portfolio Preview" width="800"/>
 </div>
 
 ---

@@ -11,8 +11,7 @@ Welcome to my **personal portfolio website** — a sleek, responsive, and modern
 
 ## Live Preview
 
-[Click here to view the live site](https://your-github-username.github.io/your-repo-name/)  
-*(Replace with your actual GitHub Pages link)*
+[Click here to view the live site](https://nayar-900.github.io/Portfolio/)  
 
 ---
 
@@ -77,7 +76,7 @@ Welcome to my **personal portfolio website** — a sleek, responsive, and modern
 # Clone the repo
 git clone https://github.com/your-username/your-repo-name.git
 
-# Navigate to folder
+# Navigate to the folder
 cd your-repo-name
 
 # Open index.html in your browser
@@ -98,17 +97,6 @@ Feel free to reach out via email or LinkedIn for collaborations or freelance opp
 
 ## License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This open-source project is available under the [MIT License](LICENSE).
 
-```
-
----
-
-### To Use This:
-
-1. Save it as `README.md` in the root of your GitHub repository.
-2. Add a preview screenshot named `portfolio-preview.png` for the GitHub image preview (optional but recommended).
-3. Replace any placeholder URLs with your actual GitHub links.
-
-Let me know if you want a multilingual version or want to tweak the tone!
 ```

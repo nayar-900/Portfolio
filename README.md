@@ -36,7 +36,7 @@ Welcome to my **personal portfolio website** — a sleek, responsive, and modern
 - Dynamic certificates and achievements modals
 - Functional feedback/contact form
 - Academic and personal projects with clickable showcases
-- Resume download and social media integration
+- Resume download and social media integration  
 
 ---
 
